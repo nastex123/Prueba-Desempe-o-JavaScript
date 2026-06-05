@@ -1,0 +1,151 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@test.com",
+      "password": "A123456",
+      "role": "admin",
+      "name": "Administrador"
+    },
+    {
+      "id": "2",
+      "email": "user@test.com",
+      "password": "A123456",
+      "role": "user",
+      "name": "Usuario"
+    },
+    {
+      "id": "3",
+      "email": "user2@test.com",
+      "password": "A123456",
+      "role": "user",
+      "name": "Usuario 2"
+    }
+  ],
+  "workspaces": [
+    {
+      "id": "1",
+      "name": "Sala A",
+      "type": "Sala de reuniones",
+      "capacity": 8,
+      "location": "Piso 1"
+    },
+    {
+      "id": "2",
+      "name": "Sala B",
+      "type": "Sala de reuniones",
+      "capacity": 6,
+      "location": "Piso 1"
+    },
+    {
+      "id": "3",
+      "name": "Oficina 101",
+      "type": "Oficina privada",
+      "capacity": 4,
+      "location": "Piso 2"
+    },
+    {
+      "id": "4",
+      "name": "Oficina 102",
+      "type": "Oficina privada",
+      "capacity": 2,
+      "location": "Piso 2"
+    },
+    {
+      "id": "5",
+      "name": "Coworking Central",
+      "type": "Espacio de coworking",
+      "capacity": 20,
+      "location": "Piso 3"
+    },
+    {
+      "id": "6",
+      "name": "Auditorio Principal",
+      "type": "Auditorio",
+      "capacity": 50,
+      "location": "Piso B"
+    },
+    {
+      "name": "Brandon Carranza",
+      "type": "Auditorio",
+      "capacity": 100,
+      "location": "Mi polla",
+      "id": "pU4FYPKTOrY"
+    }
+  ],
+  "reservations": [
+    {
+      "id": "1",
+      "userId": 2,
+      "workspaceId": 1,
+      "workspace": "Sala A",
+      "date": "2026-01-15",
+      "startHour": "08:00",
+      "endHour": "09:00",
+      "reason": "Sprint Planning",
+      "people": 5,
+      "status": "cancelled"
+    },
+    {
+      "id": "2",
+      "userId": 3,
+      "workspaceId": "2",
+      "workspace": "Sala B",
+      "date": "2026-01-15",
+      "startHour": "10:00",
+      "endHour": "11:00",
+      "reason": "Daily Meeting",
+      "people": 5,
+      "status": "approved"
+    },
+    {
+      "id": "3",
+      "userId": 2,
+      "workspaceId": 5,
+      "workspace": "Coworking Central",
+      "date": "2026-01-16",
+      "startHour": "14:00",
+      "endHour": "17:00",
+      "reason": "Trabajo en equipo",
+      "people": 10,
+      "status": "approved"
+    },
+    {
+      "id": "4",
+      "userId": 1,
+      "workspaceId": 6,
+      "workspace": "Auditorio Principal",
+      "date": "2026-01-20",
+      "startHour": "09:00",
+      "endHour": "12:00",
+      "reason": "Reunión general",
+      "people": 30,
+      "status": "approved"
+    },
+    {
+      "userId": "1",
+      "workspaceId": "6",
+      "workspace": "Auditorio Principal",
+      "date": "2026-06-01",
+      "startHour": "09:54",
+      "endHour": "10:54",
+      "reason": "da",
+      "people": 30,
+      "status": "approved",
+      "id": "sbE_PoQ85n0"
+    },
+    {
+      "userId": "1",
+      "workspaceId": "pU4FYPKTOrY",
+      "workspace": "Brandon Carranza",
+      "date": "2026-06-01",
+      "startHour": "09:54",
+      "endHour": "10:54",
+      "reason": "una pajita ricaa",
+      "people": 3,
+      "status": "cancelled",
+      "id": "EI9sOcKD3kU"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
