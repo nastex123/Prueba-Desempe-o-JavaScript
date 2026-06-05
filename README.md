@@ -160,3 +160,7 @@ All served by json-server at `http://localhost:3001`:
 - **Black & white action buttons** — Edit, delete, approve, reject, and cancel buttons use simple border styling instead of colored backgrounds.
 - **Toast notification system** — Real-time feedback for all operations (create, update, delete, approve, reject, cancel).
 - **Search and filter** — Filter reservations by workspace name (text input) and status (dropdown).
+
+---
+
+Repository: [https://github.com/nastex123/Prueba-Desempe-o-JavaScript.git](https://github.com/nastex123/Prueba-Desempe-o-JavaScript.git)
