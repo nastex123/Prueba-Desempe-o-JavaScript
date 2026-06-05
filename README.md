@@ -36,6 +36,24 @@ npm run dev
 - **Vite dev server**: http://localhost:5173
 - **json-server API**: http://localhost:3001
 
+### Running json-server
+
+The project uses `concurrently` to run Vite and json-server together:
+
+```bash
+npm run dev
+```
+
+This starts both:
+- Vite dev server on http://localhost:5173
+- json-server on http://localhost:3001 watching `db.json`
+
+To run json-server separately:
+
+```bash
+npx json-server --watch db.json --port 3001
+```
+
 ### Test Accounts
 
 | Email | Password | Role |
@@ -88,6 +106,36 @@ All served by json-server at `http://localhost:3001`:
 | POST | /workspaces | Create workspace |
 | PUT | /workspaces/:id | Update workspace |
 | DELETE | /workspaces/:id | Delete workspace |
+
+## Role Permissions
+
+| Action | Admin | User |
+|---|---|---|
+| View reservations | All reservations | Own reservations only |
+| Create reservation | ✅ | ✅ |
+| Edit reservation | Any (any status) | Own pending only |
+| Delete reservation | Any | ❌ |
+| Approve reservation | Pending only | ❌ |
+| Reject reservation | Pending only | ❌ |
+| Cancel reservation | Any | Own pending or approved |
+| Create workspace | ✅ | ❌ |
+| Edit workspace | ✅ | ❌ |
+| Delete workspace | ✅ | ❌ |
+
+## Technical Decisions
+
+- **Loose equality (`==`) for ID comparisons** — json-server v1 returns IDs as mixed types (strings or numbers depending on db.json state). Using `==` avoids `NaN` from `Number()` casts when nanoid strings appear, and handles type coercion between string and numeric IDs transparently.
+- **Client-side SPA routing** — No framework router. A lightweight custom router using `history.pushState` and the `popstate` event keeps the bundle small and avoids external dependencies.
+- **Fixed sidebar** — The sidebar uses `fixed` positioning with `ml-64` on the main content to avoid layout shifts on scroll.
+- **Modal pattern** — CRUD forms use a single overlay modal (`#modalOverlay` + `#modalContent`) to avoid page navigation and preserve state. Each controller re-renders modal HTML via string templates.
+- **Toast notifications** — A lightweight `Notification` component appends timed toast messages to the DOM and auto-removes them after a timeout, avoiding a notification library dependency.
+- **json-server v1 over v0** — json-server v1 (`^1.0.0-beta.15`) provides native ESM support and better CLI integration, but has the side effect of rewriting `db.json` on startup (adding `$schema`, converting types).
+- **Dynamic workspace filtering** — Instead of showing all workspaces and relying on the user to check capacity, the dropdown is filtered reactively on every keystroke of the people input using an `input` event listener.
+- **Sequential numeric IDs** — Although json-server v1 generates nanoid strings by default, IDs in `db.json` are pre-seeded as numeric values. New resources are assigned IDs by json-server; the client never sends an `id` field in POST bodies.
+
+## Known Issues
+
+- **json-server v1 rewrites `db.json`** — On startup, json-server v1 adds a `$schema` line and may convert numeric IDs to strings. If the file becomes corrupted, restore it from the latest clean backup in version control. All client-side code uses `==` for ID matching to tolerate this.
 
 ## Bugs Fixed
 
